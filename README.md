@@ -7,7 +7,6 @@ You must design and implement the Kingdom simulation shown below. The ultimate g
 The King has a Treasure room (lower left corner) with the door guarded buy a Guardsman. The valuables in the Treasure room comes from a Mine (upper right corner) with Miners transporting their findings to a Deposit (lower right corner). Occasionally, Valuable Transporters are moving valuables from Deposit to the Treasure room and Accountants are counting all valuables in the Treasure room. When the King feels like partying, he takes valuables from the Treasure room if there are enough for a party.
 
 
-## Screenshots
 
 ![App Screenshot](https://github.com/fonCki/Assignment4/blob/988036134aca96fdeed82e972b2da3aebd8e783d/Extra/Kingdom.png)
 
