@@ -26,6 +26,6 @@ public class Archive {
     public synchronized void log(String log) {
         String finalLog = Thread.currentThread().getName() + ": " + log + " / " + LocalTime.now();
         logs.add(finalLog);
-     //   System.out.println(finalLog);
+        System.out.println(finalLog);
     }
 }

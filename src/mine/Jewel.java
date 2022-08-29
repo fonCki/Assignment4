@@ -4,9 +4,7 @@ public class Jewel extends Valuable {
     private final String NAME = "Jewel";
     private final int VALUE = 5;
 
-    Jewel(){
-
-    }
+    Jewel(){}
 
     @Override
     public String getValuableType() {

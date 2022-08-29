@@ -1,9 +1,5 @@
-import deposit.Deposit;
 import mine.Mine;
 import mine.Valuable;
-
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Miner implements Runnable {
     private Deposit deposit;

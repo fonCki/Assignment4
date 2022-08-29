@@ -1,12 +1,11 @@
-import deposit.BlockingQueue;
-import deposit.Deposit;
+
 import mine.Mine;
-import mine.Valuable;
+
 
 public class test {
     public static void main(String[] args) {
         Mine mine = new Mine();
-        Deposit deposit = new BlockingQueue(18);
+        Deposit deposit = new Deposit(18);
         TreasureRoomDoor treasure = new Guardsman();
 
         Runnable miner0 = new Miner("Lion-O", deposit, mine);

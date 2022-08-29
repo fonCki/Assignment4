@@ -1,25 +1,23 @@
-package deposit;
-
 import mine.Valuable;
 import utility.collection.ArrayList;
 
 import java.net.Socket;
 
-public class BlockingQueue implements Deposit{
+public class Deposit{
     private ArrayList<Valuable> queue;
     private int capacity;
-    // public Archive archive;
+    public Archive archive = Archive.getArchive();
 
 
-    public BlockingQueue(int capacity) {
+    public Deposit(int capacity) {
         queue = new ArrayList<Valuable>();
         this.capacity = capacity;
     }
 
     public synchronized void put(Valuable valuable) {
-        while (queue.size() >= capacity) {
+        while (isFull()) {
             try {
-          //      System.out.println("Full Capacity, waiting to put more valluables");
+                archive.log("Full Capacity, waiting to put more valuables");
                 wait();
 
             } catch (InterruptedException e) {
@@ -31,31 +29,28 @@ public class BlockingQueue implements Deposit{
     }
 
     public synchronized Valuable take() {
-        while (queue.size() <= 0) {
+        while (isEmpty()) {
             try {
-          //      System.out.println("No many, waiting to take some more");
+                archive.log("No many, waiting to take some more");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         Valuable removed = queue.remove(0);
-        System.out.println("back to life");
+        archive.log("Finally, I can take more Valuables");
         notifyAll();
         return removed;
     }
 
-    @Override
     public synchronized boolean isFull() {
         return (queue.size() >= capacity) ;
     }
 
-    @Override
     public synchronized boolean isEmpty() {
         return (queue.size() <= 0) ;
     }
 
-    @Override
     public synchronized int size() {
         return queue.size();
     }

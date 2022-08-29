@@ -4,8 +4,7 @@ public class Ruby extends Valuable {
     private final String NAME = "Ruby";
     private final int VALUE = 2;
 
-    Ruby() {
-    }
+    Ruby() {}
 
     @Override
     public String getValuableType() {

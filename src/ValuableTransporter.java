@@ -1,11 +1,9 @@
-import deposit.Deposit;
 import mine.Mine;
 import mine.Valuable;
 import utility.collection.ArrayList;
 
 public class ValuableTransporter implements Runnable {
     private Deposit deposit;
-    private Mine mine;
     private String name;
     private ArrayList<Valuable> transporterBag;
     private Valuable valuable;
@@ -49,11 +47,11 @@ public class ValuableTransporter implements Runnable {
 
             }
 
-            archive.log("------------------------------------------------------> adding into the the treasure " + totalTransporterBag + "/ " + transporterBag.size());
+            archive.log("--> adding into the the treasure " + totalTransporterBag + "/ " + transporterBag.size());
             treasure.acquireWrite();
             treasure.add(this,transporterBag);
             treasure.releaseWrite();
-            archive.log("------------------------------------------------------> added complete, ready to start again");
+            archive.log("--> added complete, ready to start again");
 
 
             //clean the bag

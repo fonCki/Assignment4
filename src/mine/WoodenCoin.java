@@ -7,8 +7,7 @@ public class WoodenCoin extends Valuable {
     private final String NAME = "WoodenCoin";
     private final int VALUE = 1;
 
-    WoodenCoin() {
-    }
+    WoodenCoin() {}
 
     @Override
     public String getValuableType() {

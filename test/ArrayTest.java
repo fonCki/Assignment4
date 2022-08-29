@@ -53,7 +53,6 @@ public class ArrayTest {
 
     @Test
     public void getElementWithIndex() {
-
         assertEquals("Cramer", list.get(4));
         assertNotEquals("Kasper", list.get(3));
         assertThrows(IllegalStateException.class, ()->list.get(6));

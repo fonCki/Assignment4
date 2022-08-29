@@ -6,6 +6,7 @@ public class Guardsman implements TreasureRoomDoor{
     private boolean activeWriter;
     private int waitingWriters;
     private int activeReaders;
+    private Archive archive = Archive.getArchive();
 
     private TreasureRoom treasureRoom;
 
@@ -17,19 +18,16 @@ public class Guardsman implements TreasureRoomDoor{
     public synchronized void acquiredRead() {
         while(activeWriter && waitingWriters > 0) {
             try {
-                System.out.println(Thread.currentThread().getName() + "Waiting");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println(Thread.currentThread().getName() + " Done waiting");
         activeReaders++;
     }
 
     @Override
     public synchronized void releaseRead() {
-        System.out.println(Thread.currentThread().getName() + " Realese readers");
         activeReaders--;
         if (activeReaders == 0) {
             notifyAll();
@@ -41,12 +39,10 @@ public class Guardsman implements TreasureRoomDoor{
         waitingWriters++;
         while (activeWriter && activeReaders > 0) {
             try {
-                System.out.println(Thread.currentThread().getName() + " Waiting2");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getName() + " Done writing2");
             waitingWriters--;
             activeWriter = true;
         }
@@ -55,7 +51,6 @@ public class Guardsman implements TreasureRoomDoor{
 
     @Override
     public synchronized void releaseWrite() {
-       // System.out.println(Thread.currentThread().getName() + " Realese writers");
         activeWriter = false;
         notifyAll();
     }
@@ -65,7 +60,7 @@ public class Guardsman implements TreasureRoomDoor{
         if (character instanceof King || character instanceof ValuableTransporter) {
             treasureRoom.add(character,valuableTransportBag);
         } else {
-            System.out.println("access denied"); //CHABGE THIS TO LOG
+            archive.log("You have no authorization to do this operation");
         }
     }
 
@@ -74,7 +69,7 @@ public class Guardsman implements TreasureRoomDoor{
         if (character instanceof King) {
             return treasureRoom.retrieve(character);
         } else {
-            System.out.println("access denied"); //CHABGE THIS TO LOG
+            archive.log("You're not the fkig King MATE!!");
         }
         return null;
     }
@@ -84,7 +79,7 @@ public class Guardsman implements TreasureRoomDoor{
         if (character instanceof King || character instanceof ValuableTransporter || character instanceof Accountant) {
             return treasureRoom.look(character);
         } else {
-            System.out.println("access denied"); //CHABGE THIS TO LOG
+            archive.log("Not sure who you are, but you have no access to be here...");
         }
         return -1;
     }

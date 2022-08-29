@@ -4,9 +4,8 @@ public class GoldNugget extends Valuable {
     private final String NAME = "GoldNugget";
     private final int VALUE = 7;
 
-    GoldNugget() {
+    GoldNugget() {}
 
-    }
     @Override
     public String getValuableType() {
         return NAME;
