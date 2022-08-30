@@ -72,7 +72,7 @@ public class ArrayTest {
 
     @Test
     public void isFull() {  //The error is here! the list can't never be full acording to the documentation.
-        assertFalse(list.isFull());
+        assertTrue(list.isFull());
     }
 
     @Test
